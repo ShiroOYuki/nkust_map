@@ -13,8 +13,12 @@ def listen():
         if msg == "Login":
             s = sql()
             id = datas["ID"]
-            if s.check(id):
+            encpwd = datas["pwd"]
+            che = s.check(id, encpwd):
+            if che == "True":
                 result = {"msg": "Login", "status": "OK"}
+            elif che == "incorrect":
+                return {"msg": "Login", "status": "PWD_ERROR"}
             else:
                 encpwd = datas["pwd"]
                 user = newUser(id, encpwd)
@@ -26,6 +30,7 @@ def listen():
                     
                     print("Success!")
                 result = {"msg": "Login", "status": "OK"}
+                return result
                 
         if msg == "getNextClassInfo":
             s = sql()

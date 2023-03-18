@@ -13,12 +13,14 @@ class sql:
         self.conn = pymysql.connect(**db_setting)
         self.cursor = self.conn.cursor()
 
-    def check(self, id) -> bool:
+    def check(self, id, encpwd):
         self.cursor.execute(f"select * from students where id='{id}'")
         result = self.cursor.fetchall()
         if result:
-            return True
-        return False
+            if encpwd == result["pwd"]:
+                return "True"
+            return "incorrect"
+        return "False"
 
     def search(self, id, class_time):
         self.cursor.execute(f"select * from students where id='{id}'")
