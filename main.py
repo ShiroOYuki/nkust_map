@@ -14,7 +14,7 @@ def listen():
             s = sql()
             id = datas["ID"]
             if s.check(id):
-                result = {"msg": "Login", "status": "Exist"}
+                result = {"msg": "Login", "status": "OK"}
             else:
                 encpwd = datas["pwd"]
                 user = newUser(id, encpwd)
