@@ -41,6 +41,6 @@ if __name__ == '__main__':
     app.run(host="127.0.0.1", port="5000")
 
 # post: {"msg": "Login", "ID": "C111151125", "pwd": "base_64_pwd"}
-# response: {"msg": "Login", "status": "OK"}
+# response: {"msg": "Login", "status": "OK"}   200>0K   400>error  600>empty
 # post: {"msg": "getNextClassInfo", "ID": "C111151125", "time": "1-1"}
 # response: {"msg": "getNextClassInfo", "name": "class_name", "addr": "address", "status": "OK"}
