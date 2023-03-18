@@ -38,7 +38,7 @@ def listen():
     return {"msg": "Failed!"}
 
 if __name__ == '__main__':
-    app.run(host="127.0.0.1", port="5000")
+    app.run(host="0.0.0.0", port="5000")
 
 # post: {"msg": "Login", "ID": "C111151125", "pwd": "base_64_pwd"}
 # response: {"msg": "Login", "status": "OK"}   200>0K   400>error  600>empty
