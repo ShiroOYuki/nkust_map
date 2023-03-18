@@ -15,7 +15,8 @@ class sql:
 
     def check(self, id, encpwd):
         self.cursor.execute(f"select * from students where id='{id}'")
-        result = self.cursor.fetchall()
+        result = self.cursor.fetchone()
+        print(result)
         if result:
             if encpwd == result[1]:
                 return "True"
