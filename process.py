@@ -17,7 +17,7 @@ class sql:
         self.cursor.execute(f"select * from students where id='{id}'")
         result = self.cursor.fetchall()
         if result:
-            if encpwd == result["pwd"]:
+            if encpwd == result[1]:
                 return "True"
             return "incorrect"
         return "False"
