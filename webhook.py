@@ -1,19 +1,19 @@
-import requests
-from bs4 import BeautifulSoup as bs
 from selenium import webdriver
 import base64
 import time
 from  PIL import Image
 import nkust_map.getText as getText
 from selenium.webdriver.common.by import By
-import os
+import json
 
 class login:
-    def __init__(self):
+    def __init__(self, act, encpwd):
         self.url = "https://webap.nkust.edu.tw/nkust"
         self.headers = {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"}
-        self.act = "C111151115"
-        self.encPwd = "QmFieTA1MTg="
+        self.act = act
+        self.encPwd = encpwd
+        # self.act = "C111151115"
+        # self.encPwd = "QmFieTA1MTg="
         # self.act = "C111151125"
         # self.encPwd = "YWFhNzA4NTU="
     
@@ -70,12 +70,12 @@ class login:
         element.click()
         time.sleep(1)
         
-        classes = [self.act]
+        result = {"ID": self.act}
+        classes = []
         time_code = ["M", 1, 2, 3, 4, "A", 5, 6, 7, 8, 9, 10, 11, 12, 13]
         for td in range(2, 9):
             for tr in range(2, 17):
                 item = driver.find_element(By.XPATH, f"/html/body/table/tbody/tr[{tr}]/td[{td}]")
-                
                 if item.text != " ":
                     info = item.text.split("\n")[:3]
                     class_name = info[0]
@@ -84,14 +84,9 @@ class login:
                     if addr == "":
                         addr = None
                     classes.append({"time": f"{time_code[td-1]}-{time_code[tr-2]}", "name": class_name, "teacher": teacher, "addr": addr})
-                else:
-                    classes.append({"time": f"{time_code[td-1]}-{time_code[tr-2]}", "name": None, "teacher": None, "addr": None})
+        result["classes"] = classes
         driver.close()
-        
-        for i in classes:
-            print(i)
-        os.system("pause")
-        return classes
+        return result
     
     def pwd_decode(self, enc):
         return base64.b64decode(enc).decode("utf-8")
