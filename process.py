@@ -61,3 +61,6 @@ class newUser:
         data = l.run()
         print(type(data))
         return data
+    
+    def check_is_correct(self):
+        pass

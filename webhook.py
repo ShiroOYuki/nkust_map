@@ -4,6 +4,7 @@ import time
 from  PIL import Image
 import nkust_map.getText as getText
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.alert import Alert
 import json
 
 class login:
@@ -53,7 +54,13 @@ class login:
         verifyInput.send_keys(verifyCode)
         loginBtn.click()
         time.sleep(2)
-        
+        try:
+            alert = Alert(driver)
+            alert_text = alert.text
+            print(alert_text)
+            return False
+        except:
+            pass
         # get class
         frame_element = driver.find_element(By.ID, "Lmenu")
         driver.switch_to.frame(frame_element)

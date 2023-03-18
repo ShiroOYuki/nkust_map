@@ -18,10 +18,13 @@ def listen():
             else:
                 encpwd = datas["pwd"]
                 user = newUser(id, encpwd)
-                if s.add_user(id, encpwd):
-                    classes = user.getClass()
-                    if s.add_class(classes):
-                        print("Success!")
+                classes = user.getClass()
+                if not classes:
+                    return {"msg": "Login", "status": "FAILED"}
+                s.add_user(id, encpwd)
+                if s.add_class(classes):
+                    
+                    print("Success!")
                 result = {"msg": "Login", "status": "OK"}
                 
         if msg == "getNextClassInfo":
