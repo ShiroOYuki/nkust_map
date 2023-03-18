@@ -1,15 +1,18 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=["GET"])
 def listen():
     return {"msg": "Hello, World!"}
 
-@app.route("/post")
-def getdata(request):
-    print(request.json())
-    return {"msg": "Success!"}
+@app.route("/post", methods=["POST"])
+def getdata():
+    if request.method == "POST":
+        datas = request.form
+        print(datas["msg"])
+        return {"msg": "Success!"}
+    return {"msg": "Failed!"}
 
 if __name__ == '__main__':
     app.run()
