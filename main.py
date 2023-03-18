@@ -42,7 +42,7 @@ def listen():
                 addr = next_class["CAddr"]
                 result = {"msg": "getNextClassInfo", "name": name, "addr": addr, "room": addr[0], "status": "OK"}
             else:
-                result = {"msg": "getNextClassInfo", "name": "", "addr": "", "room": "", "status": "EMPTY"}
+                result = {"msg": "getNextClassInfo", "name": "No Class", "addr": "None", "room": "None", "status": "EMPTY"}
         return result
     elif request.method == "GET":
         return {"msg": "Hello, World!"}
