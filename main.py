@@ -6,7 +6,7 @@ app = Flask(__name__)
 def listen():
     if request.method == "POST":
         datas = request.form
-        print(datas["msg"])
+        print(datas)
         result = {"msg": "Success!", "password": "123", "id": "JACK", "status": "OK"}
         return result
     elif request.method == "GET":
@@ -14,4 +14,9 @@ def listen():
     return {"msg": "Failed!"}
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port="5000")
+    app.run(host="127.0.0.1", port="5000")
+
+# post: {"msg": "Login", "ID": "C111151125", "pwd": "base_64_pwd"}
+# response: {"msg": "Login", "status": "OK"}
+# post: {"msg": "getNextClassInfo", "ID": "C111151125", "time": "1-1"}
+# response: {"msg": "getNextClassInfo", "ID": "C111151125", "info": {"name": "class_name", "addr": "address"}, "status": "OK"}
