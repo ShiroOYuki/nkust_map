@@ -46,9 +46,10 @@ class sql:
     def get_single_class(self, id, time):
         self.cursor.execute(f"select * from classes where id='{id}' and Ctime='{time}'")
         result = self.cursor.fetchone()
-        (id, ctime, name, teacher, addr) = result
-            
-        return {"ID": id, "CTime": ctime, "CName": name, "CTeacher": teacher, "CAddr": addr}
+        if result:
+            (id, ctime, name, teacher, addr) = result
+            return {"ID": id, "CTime": ctime, "CName": name, "CTeacher": teacher, "CAddr": addr}
+        return None
             
     
 class newUser:

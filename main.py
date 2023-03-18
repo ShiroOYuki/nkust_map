@@ -32,9 +32,12 @@ def listen():
             id = datas["ID"]
             t = datas["time"]
             next_class = s.get_single_class(id, t)
-            name = next_class["CName"]
-            addr = next_class["CAddr"]
-            result = {"msg": "getNextClassInfo", "name": name, "addr": addr, "room": addr[0], "status": "OK"}
+            if next_class:
+                name = next_class["CName"]
+                addr = next_class["CAddr"]
+                result = {"msg": "getNextClassInfo", "name": name, "addr": addr, "room": addr[0], "status": "OK"}
+            else:
+                result = {"msg": "getNextClassInfo", "name": "", "addr": "", "room": "", "status": "EMPTY"}
         return result
     elif request.method == "GET":
         return {"msg": "Hello, World!"}
