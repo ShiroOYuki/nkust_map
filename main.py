@@ -7,7 +7,8 @@ def listen():
     if request.method == "POST":
         datas = request.form
         print(datas["msg"])
-        return {"msg": "Success!"}
+        result = {"msg": "Success!", "password": "123", "id": "JACK", "status": "OK"}
+        return result
     elif request.method == "GET":
         return {"msg": "Hello, World!"}
     return {"msg": "Failed!"}
