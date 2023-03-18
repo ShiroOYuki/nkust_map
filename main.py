@@ -2,16 +2,14 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/', methods=["GET"])
+@app.route('/', methods=["GET", "POST"])
 def listen():
-    return {"msg": "Hello, World!"}
-
-@app.route("/post", methods=["POST"])
-def getdata():
     if request.method == "POST":
         datas = request.form
         print(datas["msg"])
         return {"msg": "Success!"}
+    elif request.method == "GET":
+        return {"msg": "Hello, World!"}
     return {"msg": "Failed!"}
 
 if __name__ == '__main__':
