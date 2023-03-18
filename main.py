@@ -14,7 +14,7 @@ def listen():
             s = sql()
             id = datas["ID"]
             encpwd = datas["pwd"]
-            che = s.check(id, encpwd):
+            che = s.check(id, encpwd)
             if che == "True":
                 result = {"msg": "Login", "status": "OK"}
             elif che == "incorrect":
